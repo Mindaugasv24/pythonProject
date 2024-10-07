@@ -1,3 +1,7 @@
+"""
+This is minigame about space shotter!
+"""
+
 import pygame
 import random
 
@@ -23,8 +27,10 @@ enemy_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-
 bullet_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/laser.png')
 
 
-# Classes
 class Player:
+    """
+    This is player class, who represent player, moves, health lose in the screen!
+    """
     def __init__(self):
         self.image = player_img
         self.rect = self.image.get_rect(center=(WIDTH // 2, HEIGHT - 50))
@@ -46,6 +52,9 @@ class Player:
 
 
 class Enemy:
+    """
+    Enemy class, show enemy position in the field, moves
+    """
     def __init__(self, speed_increase):
         self.image = enemy_img
         self.rect = self.image.get_rect(center=(random.randint(0, WIDTH), 0))
@@ -59,6 +68,9 @@ class Enemy:
 
 
 class Bullet:
+    """
+
+    """
     def __init__(self, x, y):
         self.image = bullet_img
         self.rect = self.image.get_rect(center=(x, y))
