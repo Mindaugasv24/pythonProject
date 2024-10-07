@@ -29,7 +29,7 @@ class Player:
         self.image = player_img
         self.rect = self.image.get_rect(center=(WIDTH // 2, HEIGHT - 50))
         self.speed = 5
-        self.health = 5  # Player starts with 5 health points
+        self.health = 5
 
     def move(self):
         keys = pygame.key.get_pressed()
@@ -49,7 +49,7 @@ class Enemy:
     def __init__(self, speed_increase):
         self.image = enemy_img
         self.rect = self.image.get_rect(center=(random.randint(0, WIDTH), 0))
-        self.speed = random.randint(2, 5) + speed_increase  # Enemies get faster with levels
+        self.speed = random.randint(2, 5) + speed_increase
 
     def move(self):
         self.rect.y += self.speed
