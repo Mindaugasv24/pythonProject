@@ -117,7 +117,7 @@ def main():
                 enemies.remove(enemy)
                 enemies.append(Enemy(level - 1))  # Respawn new enemy
                 if player.health <= 0:
-                    print("Game Over")
+                    print("Game Over Boy")
                     running = False
 
             for bullet in bullets[:]:
