@@ -6,8 +6,10 @@ pygame.init()
 
 # Constants
 WIDTH, HEIGHT = 800, 600
-WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
+ORANGE = (255, 165, 0)
+BLUE = (50, 153, 213)
 RED = (255, 0, 0)
 FPS = 60
 
@@ -69,6 +71,37 @@ class Bullet:
         surface.blit(self.image, self.rect)
 
 
+# Function to display the End Game screen
+def show_end_game_screen(final_score):
+    screen.fill(BLUE)
+    font = pygame.font.Font(None, 74)
+    game_over_text = font.render("GAME OVER", True, RED)
+    screen.blit(game_over_text, (WIDTH // 2 - 200, HEIGHT // 2 - 100))
+
+    font = pygame.font.Font(None, 36)
+    score_text = font.render(f"Final Score: {final_score}", True, GREEN)
+    screen.blit(score_text, (WIDTH // 2 - 100, HEIGHT // 2))
+
+    restart_text = font.render("Press R to Restart or Q to Quit", True, ORANGE)
+    screen.blit(restart_text, (WIDTH // 2 - 200, HEIGHT // 2 + 50))
+
+    pygame.display.flip()
+
+    waiting = True
+    while waiting:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+                if event.key == pygame.K_r:
+                    waiting = False
+                    main()  # Restart the game by calling main()
+
+
 # Game Loop
 def main():
     clock = pygame.time.Clock()
@@ -77,17 +110,18 @@ def main():
     bullets = []
     score = 0
     level = 1
+    last_level_up_score = 0  # Track when we last leveled up
     running = True
 
     def draw_health():
         font = pygame.font.Font(None, 36)
-        health_text = font.render(f'Health: {player.health}', True, RED)
+        health_text = font.render(f'Health: {player.health}', True, ORANGE)
         screen.blit(health_text, (WIDTH - 150, 10))
 
     def draw_score_and_level():
         font = pygame.font.Font(None, 36)
-        score_text = font.render(f'Score: {score}', True, WHITE)
-        level_text = font.render(f'Level: {level}', True, WHITE)
+        score_text = font.render(f'Score: {score}', True, GREEN)
+        level_text = font.render(f'Level: {level}', True, GREEN)
         screen.blit(score_text, (10, 10))
         screen.blit(level_text, (10, 50))
 
@@ -117,7 +151,7 @@ def main():
                 enemies.remove(enemy)
                 enemies.append(Enemy(level - 1))  # Respawn new enemy
                 if player.health <= 0:
-                    print("Game Over Boy")
+                    show_end_game_screen(score)  # Trigger the end game screen
                     running = False
 
             for bullet in bullets[:]:
@@ -128,10 +162,10 @@ def main():
                     enemies.append(Enemy(level - 1))  # Respawn new enemy
 
         # Level Progression
-        if score > 0 and score % 10 == 0:  # Every 10 points, increase level
+        if score >= last_level_up_score + 10:  # Every 10 points, increase level
             level += 1
+            last_level_up_score = score  # Update last level-up score
             enemies.append(Enemy(level - 1))  # Add an extra enemy for each new level
-            score += 1  # Prevents multiple level ups in a row for the same score
 
         # Draw
         screen.fill(BLACK)
