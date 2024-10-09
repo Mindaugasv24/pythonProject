@@ -29,7 +29,7 @@ bullet_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games
 
 class Player:
     """
-    This is player class, who represent player, moves, health lose in the screen!
+    This is player class, who represent player, moves, health lose on the screen!
     """
     def __init__(self):
         self.image = player_img
@@ -53,7 +53,7 @@ class Player:
 
 class Enemy:
     """
-    Enemy class, show enemy position in the field, moves
+    Enemy class, show moves and enemy random position in the field!
     """
     def __init__(self, speed_increase):
         self.image = enemy_img
@@ -69,7 +69,7 @@ class Enemy:
 
 class Bullet:
     """
-
+    Bullet class, show moves and bullet image and position in the field!
     """
     def __init__(self, x, y):
         self.image = bullet_img
@@ -114,8 +114,10 @@ def show_end_game_screen(final_score):
                     main()  # Restart the game by calling main()
 
 
-# Game Loop
 def main():
+    """
+    This is Game Loop! Its shows everything on the screen!
+    """
     clock = pygame.time.Clock()
     player = Player()
     enemies = [Enemy(0) for _ in range(5)]  # Initial set of enemies
@@ -173,13 +175,17 @@ def main():
                     score += 1
                     enemies.append(Enemy(level - 1))  # Respawn new enemy
 
-        # Level Progression
+        """
+        Level Progression!
+        """
         if score >= last_level_up_score + 10:  # Every 10 points, increase level
             level += 1
             last_level_up_score = score  # Update last level-up score
             enemies.append(Enemy(level - 1))  # Add an extra enemy for each new level
 
-        # Draw
+        """
+        DRAW!
+        """
         screen.fill(BLACK)
         player.draw(screen)
         for enemy in enemies:
