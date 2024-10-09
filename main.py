@@ -1,5 +1,5 @@
 """
-This is minigame about space shotter!
+This is minigame about space shooter!
 """
 
 import pygame
