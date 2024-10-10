@@ -1,5 +1,7 @@
 """
-This is minigame about space shooter!
+This is minigame Star Troopers. The game uses basic 2D graphics, loading images for the player, enemies
+and bullets from external files. Sound effects (laser shooting) and background music add to the overall
+gameplay experience, making the game more immersive.!
 """
 
 import pygame
@@ -21,24 +23,20 @@ RED = (255, 0, 0)
 FPS = 60
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Space Defender")
+pygame.display.set_caption("Star Troopers")
 
 """
-Shooting sounds!
+Sound, Music and Images: Laser shooting sounds and background music are incorporated into the game for an immersive
+experience. Volume levels are adjusted for balance between sound effects and background music.
+Loading images who represent your work!
 """
 shoot_sound = pygame.mixer.Sound('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/laser.wav')
 shoot_sound.set_volume(0.5)
 
-"""
-Load background music and set it to play in a loop!
-"""
 pygame.mixer.music.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/game_music.wav')
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.1)
 
-"""
-Load images!
-"""
 player_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/player.png')
 enemy_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/meteor.png')
 bullet_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/laser.png')
@@ -46,7 +44,8 @@ bullet_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games
 
 class Player:
     """
-    This is player class, who represent player, moves, health lose on the screen!
+    This player class: manages the player spaceship, its movement, health, and interaction with enemies.
+    The player can move in four directions (left, right, up, and down) and is constrained by the game window.!
     """
     def __init__(self):
         self.image = player_img
@@ -74,7 +73,9 @@ class Player:
 
 class Enemy:
     """
-    Enemy class, show moves and enemy random position in the field!
+    Enemy class: Handles enemy behavior, including random spawning at the top of the screen and
+    falling down toward the player.
+    The enemies’ speed increases with the game level, introducing a difficulty progression.!
     """
     def __init__(self, speed_increase):
         self.image = enemy_img
@@ -90,7 +91,8 @@ class Enemy:
 
 class Bullet:
     """
-    Bullet class, show moves and bullet image and position in the field!
+    Bullet class: represents the player's bullets, which are shot from the spaceship and move upward.
+    Bullets can destroy enemies when they collide.!
     """
     def __init__(self, x, y):
         self.image = bullet_img
@@ -106,7 +108,8 @@ class Bullet:
 
 def show_end_game_screen(final_score):
     """
-    This is Game Over screen!
+    Once the player’s health drops to zero, a game over screen appears with the final score,
+    offering the option to restart the game (by pressing "R") or quit (by pressing "Q").!
     """
     screen.fill(BLUE)
     font = pygame.font.Font(None, 74)
@@ -139,7 +142,15 @@ def show_end_game_screen(final_score):
 
 def main():
     """
-    This is Game Loop! Its shows everything on the screen!
+    The game loop is responsible for:
+        Handling Events: Captures user input, such as movement, shooting, and quitting.
+    Object Movement: Moves the player, enemies, and bullets based on user input and game logic.
+        Collision Detection: Detects collisions between bullets and enemies (destroying enemies), and between enemies
+    and the player (damaging the player).
+        Health and Game Over: The player has limited health (5 by default), and when it reaches zero,
+    the game over screen is triggered.
+        Scoring and Leveling: Points are awarded for destroying enemies, and as the score increases, the game level
+        rises, introducing faster and more enemies.!
     """
     clock = pygame.time.Clock()
     player = Player()
@@ -200,7 +211,9 @@ def main():
                     enemies.append(Enemy(level - 1))  # Respawn new enemy
 
         """
-        Level Progression!
+        The game becomes progressively more difficult by increasing the speed of enemies and spawning more enemies
+        as the player scores more points. Every 20 points, a new level starts, which raises the challenge by adding a
+        new enemy and increasing their speed.!
         """
         if score >= last_level_up_score + 20:
             level += 1
