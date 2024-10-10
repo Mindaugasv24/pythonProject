@@ -5,10 +5,14 @@ This is minigame about space shooter!
 import pygame
 import random
 
-# Initialize Pygame
+"""
+Initialize Pygame!
+"""
 pygame.init()
 
-# Constants
+"""
+Constants!
+"""
 WIDTH, HEIGHT = 800, 600
 GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
@@ -17,11 +21,15 @@ BLUE = (50, 153, 213)
 RED = (255, 0, 0)
 FPS = 60
 
-# Set up the screen
+"""
+Set up the screen!
+"""
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Space Defender")
 
-# Load images
+"""
+Load images!
+"""
 player_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/player.png')
 enemy_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/meteor.png')
 bullet_img = pygame.image.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/images/laser.png')
