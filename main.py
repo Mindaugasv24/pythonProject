@@ -193,22 +193,22 @@ def main():
             enemy.move()
             if enemy.rect.top > HEIGHT:
                 enemies.remove(enemy)
-                enemies.append(Enemy(level - 1))  # Respawn enemy with level-based speed
+                enemies.append(Enemy(level - 1))
 
-            if enemy.rect.colliderect(player.rect):  # Enemy hits player
+            if enemy.rect.colliderect(player.rect):
                 player.lose_health()
                 enemies.remove(enemy)
-                enemies.append(Enemy(level - 1))  # Respawn new enemy
+                enemies.append(Enemy(level - 1))
                 if player.health <= 0:
-                    show_end_game_screen(score)  # Trigger the end game screen
+                    show_end_game_screen(score)
                     running = False
 
             for bullet in bullets[:]:
-                if enemy.rect.colliderect(bullet.rect):  # Bullet hits enemy
+                if enemy.rect.colliderect(bullet.rect):
                     bullets.remove(bullet)
                     enemies.remove(enemy)
                     score += 1
-                    enemies.append(Enemy(level - 1))  # Respawn new enemy
+                    enemies.append(Enemy(level - 1))
 
         """
         The game becomes progressively more difficult by increasing the speed of enemies and spawning more enemies
