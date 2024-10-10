@@ -137,7 +137,7 @@ def show_end_game_screen(final_score):
                     quit()
                 if event.key == pygame.K_r:
                     waiting = False
-                    main()  # Restart the game by calling main()
+                    main()
 
 
 def main():
@@ -154,11 +154,11 @@ def main():
     """
     clock = pygame.time.Clock()
     player = Player()
-    enemies = [Enemy(0) for _ in range(5)]  # Initial set of enemies
+    enemies = [Enemy(0) for _ in range(5)]
     bullets = []
     score = 0
     level = 1
-    last_level_up_score = 0  # Track when we last leveled up
+    last_level_up_score = 0
     running = True
 
     def draw_health():
