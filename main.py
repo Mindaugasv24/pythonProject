@@ -83,8 +83,10 @@ class Bullet:
         surface.blit(self.image, self.rect)
 
 
-# Function to display the End Game screen
 def show_end_game_screen(final_score):
+    """
+    This is Game Over screen!
+    """
     screen.fill(BLUE)
     font = pygame.font.Font(None, 74)
     game_over_text = font.render("GAME OVER", True, RED)
