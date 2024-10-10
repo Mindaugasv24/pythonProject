@@ -6,15 +6,12 @@ import pygame
 import random
 
 """
-Initialize Pygame!
+Initialization and Setup!
 """
 pygame.init()
 
 pygame.mixer.init()
 
-"""
-Constants!
-"""
 WIDTH, HEIGHT = 800, 600
 GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
@@ -22,6 +19,9 @@ ORANGE = (255, 165, 0)
 BLUE = (50, 153, 213)
 RED = (255, 0, 0)
 FPS = 60
+
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Space Defender")
 
 """
 Shooting sounds!
@@ -35,12 +35,6 @@ Load background music and set it to play in a loop!
 pygame.mixer.music.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/game_music.wav')
 pygame.mixer.music.play(-1)
 pygame.mixer.music.set_volume(0.1)
-
-"""  
-Set up the screen!
-"""
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Space Defender")
 
 """
 Load images!
