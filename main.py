@@ -34,7 +34,7 @@ Load background music and set it to play in a loop!
 """
 pygame.mixer.music.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/game_music.wav')
 pygame.mixer.music.play(-1)
-pygame.mixer.music.set_volume(0.5)
+pygame.mixer.music.set_volume(0.1)
 
 """  
 Set up the screen!
@@ -116,7 +116,7 @@ def show_end_game_screen(final_score):
     """
     screen.fill(BLUE)
     font = pygame.font.Font(None, 74)
-    game_over_text = font.render("GAME OVER", True, RED)
+    game_over_text = font.render("GAME OVER BOY", True, RED)
     screen.blit(game_over_text, (WIDTH // 2 - 200, HEIGHT // 2 - 100))
 
     font = pygame.font.Font(None, 36)
