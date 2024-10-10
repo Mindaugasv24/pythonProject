@@ -208,7 +208,7 @@ def main():
         """
         Level Progression!
         """
-        if score >= last_level_up_score + 10:
+        if score >= last_level_up_score + 20:
             level += 1
             last_level_up_score = score
             enemies.append(Enemy(level - 1))
