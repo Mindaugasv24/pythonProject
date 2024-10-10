@@ -10,6 +10,8 @@ Initialize Pygame!
 """
 pygame.init()
 
+pygame.mixer.init()
+
 """
 Constants!
 """
@@ -22,6 +24,19 @@ RED = (255, 0, 0)
 FPS = 60
 
 """
+Shooting sounds!
+"""
+shoot_sound = pygame.mixer.Sound('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/laser.wav')
+shoot_sound.set_volume(0.5)
+
+"""
+Load background music and set it to play in a loop!
+"""
+pygame.mixer.music.load('C:/Users/k00zeris/Documents/pythonProject/5games-main/space shooter/audio/game_music.wav')
+pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(0.5)
+
+"""  
 Set up the screen!
 """
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -160,6 +175,7 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     bullets.append(Bullet(player.rect.centerx, player.rect.top))
+                    shoot_sound.play()
 
         player.move()
 
@@ -192,10 +208,10 @@ def main():
         """
         Level Progression!
         """
-        if score >= last_level_up_score + 10:  # Every 10 points, increase level
+        if score >= last_level_up_score + 10:
             level += 1
-            last_level_up_score = score  # Update last level-up score
-            enemies.append(Enemy(level - 1))  # Add an extra enemy for each new level
+            last_level_up_score = score
+            enemies.append(Enemy(level - 1))
 
         """
         DRAW!
